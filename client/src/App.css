@@ -26,6 +26,12 @@ html {
   background: #111;
 }
 
+button.Pagination {
+  margin: 10px;
+  padding: 10px;
+  border-radius: 5px;
+}
+
 @font-face {
   font-family: 'Nintendoid1';
   font-style: normal;

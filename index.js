@@ -15,8 +15,9 @@ app.listen(port, () => console.log(`Listening on port ${port}`));
 
 // create a GET route
 app.get('/data', (req, res) => {
-  const year = req.query.year;
+  const year = parseInt(req.query.year);
   const mass = parseInt(req.query.mass);
+  const page = parseInt(req.query.page);
   let filteredData = findData(year, mass);
 
   //if no data found for mass in year, return another year and info message
@@ -29,9 +30,10 @@ app.get('/data', (req, res) => {
     } else {
       res.send({ data: filteredData, error: 404, message: `No meteors over required mass (${mass}) found` });
     }
+  } else if (!filteredData.length && !mass) { //in case year has no data
+    res.send({ data: filteredData, error: 404, message: `No meteors on year (${year}) found` });
   } else {
-    console.log(filteredData);
-    res.send({ data: filteredData });
+    pagination(res, { data: filteredData }, page);
   }
 });
 
@@ -52,4 +54,14 @@ function findData(year,mass) {
 function findYear(mass) {
   let applicableItem = data.find((item) => item.mass > mass);
   return applicableItem ? applicableItem.year : null; 
+}
+
+const pageSize = 20;
+function pagination(res, resData, pageNumber) {
+  pageNumber = pageNumber || 1;
+  const startIndex = (pageNumber - 1) * pageSize;
+  const endIndex = startIndex + pageSize;
+  const hasMore = resData.data[endIndex+1] ? true : false;
+  resData.data = resData.data.slice(startIndex, endIndex);
+  res.send({...resData, hasMore:hasMore});
 }

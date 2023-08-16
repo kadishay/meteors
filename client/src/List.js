@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react';
 import './List.css';
 
 function List(props) {
-  	const [data, setData] = useState([])
-
-  	//Slightly innefficiance and repetative
+  	const [data, setData] = useState([]);
+  	const [error, setError] = useState(null);
 
 	useEffect(() => {
-	    setData(props.data)
- 	}, [props.data])
+	    setData(props.data);
+	    setError(props.error);
+ 	}, [props])
 
   	return (
 		<div className="List">
@@ -18,7 +18,8 @@ function List(props) {
 						<div>{item.year}</div>
 						<div>{item.mass}</div>
 				</div>)}
-			{!data.length ? <div className="ListItem" key="empty">Nothing to see here buddy!</div> : ""}
+			{(!data.length && !error) ? <div className="ListItem" key="empty">Loading...</div> : ""}
+			{error ? <div className="ListItem" key="empty">Nothing to see here buddy!</div> : ""}
 		</div>
   	)
 }
