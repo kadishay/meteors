@@ -7,7 +7,8 @@ let rawdata = fs.readFileSync('data.json');
 let data = JSON.parse(rawdata);
 data = data.map((item) => ({
         ...item,
-        year: new Date(item.year).toLocaleDateString('en-us', { year:"numeric"}) 
+        year: new Date(item.year).toLocaleDateString('en-us', { year:"numeric"}),
+        mass: item.mass ?? 'Unknown' 
       }));
 
 app.listen(port, () => console.log(`Listening on port ${port}`));

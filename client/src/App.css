@@ -10,16 +10,20 @@
 
 .App h1 {
   text-align: center;
-  font-family: Nintendoid1;
-  color: #333;
-  font-size: 3em;
-  line-height: 1;
-  text-shadow: 0.06rem 0 0.06rem #ea36af, -0.125rem 0 0.06rem #75fa69;
-  letter-spacing: 0.125em;
   animation-duration: 0.01s;
   animation-name: textflicker;
   animation-iteration-count: infinite;
   animation-direction: alternate;
+  text-shadow: 0.06rem 0 0.06rem #ea36af, -0.125rem 0 0.06rem #75fa69;
+  font-family: Nintendoid1;
+  font-size: 3em;
+  color: #eee;
+}
+
+html {
+  line-height: 1.25;
+  letter-spacing: 0.125em;
+  background: #111;
 }
 
 @font-face {

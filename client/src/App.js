@@ -46,7 +46,7 @@ function App() {
       <input className="YearSelector" placeholder="Select Year" onChange={(event)=>{setYear(event.target.value)}} /> 
       <input className="MassSelector" placeholder="Larger Than Mass" onChange={(event)=>{setMass(event.target.value)}} /> 
 
-      <List data={data}/>
+      <List className="YearSelector" data={data}/>
     </div>
   );
 }
