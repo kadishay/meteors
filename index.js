@@ -31,7 +31,7 @@ app.get('/data', (req, res) => {
       res.send({ data: filteredData, error: 404, message: `No meteors over required mass (${mass}) found` });
     }
   } else if (!filteredData.length && !mass) { //in case year has no data
-    res.send({ data: filteredData, error: 404, message: `No meteors on year (${year}) found` });
+    res.send({ data: filteredData, error: 404, message: `No meteors on desired year (${year}) found` });
   } else {
     pagination(res, { data: filteredData }, page);
   }
