@@ -12,8 +12,11 @@ function List(props) {
 
   	return (
 		<div className="List">
-			{data.map((item) => <div key={item.id}>
-						{item.name} - {item.recclass} - {item.year} - {item.mass}
+			{data.map((item) => <div className="ListItem" key={item.id}>
+						<div>{item.name}</div>
+						<div>{item.recclass}</div>
+						<div>{item.year}</div>
+						<div>{item.mass}</div>
 				</div>)}
 		</div>
   	)

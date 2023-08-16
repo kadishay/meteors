@@ -1,3 +1,17 @@
-.List div {
+.List {
 	color: lime;
+	font-family:"VT323",monospace;
+}
+
+.List .ListItem{
+    align-items: left;
+   	display: flex;
+}
+
+.List .ListItem div{
+	flex: 25%;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ;
 }
