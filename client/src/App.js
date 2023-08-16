@@ -1,39 +1,38 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+import React, { useState, useEffect } from 'react';
 import './App.css';
+import List from './List';
 
-class App extends Component {
-state = {
-    data: null
-  };
+function App() {
+  const [data, setData] = useState([]);
 
-  componentDidMount() {
-    this.callBackendAPI()
-      .then(res => this.setState({ data: res.express }))
-      .catch(err => console.log(err));
-  }
-    // fetching the GET route from the Express server which matches the GET route from server.js
-  callBackendAPI = async () => {
-    const response = await fetch('/express_backend');
-    const body = await response.json();
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch(
+        '/data',
+      );
+      const body = await response.json();
+      if (response.status !== 200) {
+        throw Error(body.message) 
+      }
+      setData(body.data);
+    };
 
-    if (response.status !== 200) {
-      throw Error(body.message) 
-    }
-    return body;
-  };
+    fetchData();
+  }, []);
 
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">{this.state.data}</p>
-      </div>
-    );
-  }
+/*
+  useEffect(() => {
+      console.log("---yotam---");
+      console.log(data);
+      console.log("---yotam---");
+  })
+*/
+  
+  return (
+    <div>
+      <List data={data}/>
+    </div>
+  );
 }
 
 export default App;
