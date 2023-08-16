@@ -1,11 +1,11 @@
-.App {
-  margin: 50px;
+html {
+  line-height: 1.25;
+  letter-spacing: 0.125em;
+  background: #111;
 }
 
-.App input {
-  margin: 10px;
-  padding: 10px;
-  border-radius: 5px;
+.App {
+  margin: 50px;
 }
 
 .App h1 {
@@ -20,13 +20,7 @@
   color: #eee;
 }
 
-html {
-  line-height: 1.25;
-  letter-spacing: 0.125em;
-  background: #111;
-}
-
-button.Pagination {
+.App input {
   margin: 10px;
   padding: 10px;
   border-radius: 5px;

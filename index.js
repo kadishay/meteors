@@ -57,7 +57,7 @@ function findAlternativeYear(mass) {
   return applicableItem ? applicableItem.year : null; 
 }
 
-const pageSize = 20;
+const pageSize = 50;
 function pagination(res, resData, pageNumber) {
   pageNumber = pageNumber || 1;
   const startIndex = (pageNumber - 1) * pageSize;

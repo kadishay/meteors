@@ -6,7 +6,7 @@
 .List .ListItem{
     align-items: left;
    	display: flex;
-   	line-height: 1.5em;
+   	line-height: 2em;
 }
 
 .List .ListItem div{
