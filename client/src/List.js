@@ -18,6 +18,7 @@ function List(props) {
 						<div>{item.year}</div>
 						<div>{item.mass}</div>
 				</div>)}
+			{!data.length ? <div className="ListItem" key="empty">Nothing to see here buddy!</div> : ""}
 		</div>
   	)
 }

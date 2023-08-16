@@ -17,10 +17,27 @@ app.listen(port, () => console.log(`Listening on port ${port}`));
 app.get('/data', (req, res) => {
   const year = req.query.year;
   const mass = parseInt(req.query.mass);
+  let filteredData = findData(year, mass);
+
+  //if no data found for mass in year, return another year and info message
+  if (!filteredData.length && mass) {
+    const newYear = findYear(mass);
+    //might not have any year found
+    if (newYear) {
+      filteredData = findData(newYear, mass);
+      res.send({ data: filteredData, yearUpdate: newYear, error: 302, message: `No meteors over required mass (${mass}) found on year ${year}, thus year modified to ${newYear}` });
+    } else {
+      res.send({ data: filteredData, error: 404, message: `No meteors over required mass (${mass}) found` });
+    }
+  } else {
+    console.log(filteredData);
+    res.send({ data: filteredData });
+  }
+});
+
+function findData(year,mass) {
   let filteredData = data; 
  
- console.log(filteredData[0])
-
   if (year) {
     filteredData = filteredData.filter((item) => item.year == year);
   }
@@ -29,9 +46,10 @@ app.get('/data', (req, res) => {
     filteredData = filteredData.filter((item) => item.mass > mass);
   }
 
-  console.log(mass);
-  console.log(filteredData.length);
+  return filteredData;
+}
 
-
-  res.send({ data: filteredData });
-});
+function findYear(mass) {
+  let applicableItem = data.find((item) => item.mass > mass);
+  return applicableItem ? applicableItem.year : null; 
+}
