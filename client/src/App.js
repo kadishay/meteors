@@ -17,8 +17,6 @@ function App() {
     } else if (mass) {
       url += `?mass=${mass}`
     }
-
-    console.log(url)
  
     const fetchData = async () => {
       const response = await fetch(
