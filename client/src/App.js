@@ -6,9 +6,9 @@ import toast, { Toaster } from 'react-hot-toast';
 
 function App() {
   const [data, setData] = useState([]);
-  const [year, setYear] = useState(null);
+  const [year, setYear] = useState(undefined);
   const [mass, setMass] = useState(null);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState(false);
   const [paginationAvailable, setPagination] = useState(null);
   const [page, setPage] = useState(1);
 

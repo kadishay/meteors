@@ -22,7 +22,7 @@ app.get('/data', (req, res) => {
 
   //if no data found for mass in year, return another year and info message
   if (!filteredData.length && mass) {
-    const newYear = findYear(mass);
+    const newYear = findAlternativeYear(mass);
     //might not have any year found
     if (newYear) {
       filteredData = findData(newYear, mass);
@@ -37,6 +37,7 @@ app.get('/data', (req, res) => {
   }
 });
 
+//find meteors data for query filter
 function findData(year,mass) {
   let filteredData = data; 
  
@@ -51,7 +52,7 @@ function findData(year,mass) {
   return filteredData;
 }
 
-function findYear(mass) {
+function findAlternativeYear(mass) {
   let applicableItem = data.find((item) => item.mass > mass);
   return applicableItem ? applicableItem.year : null; 
 }

@@ -3,7 +3,7 @@ import './List.css';
 
 function List(props) {
   	const [data, setData] = useState([]);
-  	const [error, setError] = useState(null);
+  	const [error, setError] = useState(false);
 
 	useEffect(() => {
 	    setData(props.data);
